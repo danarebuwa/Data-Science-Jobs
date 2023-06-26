@@ -10,16 +10,14 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.neighbors import NearestNeighbors
 import chardet
 
-# Load data
 @st.cache
-
-
 def load_data():
+    # Detect the encoding of your CSV file
     with open('data_science_job.csv', 'rb') as rawdata:
-    result = chardet.detect(rawdata.read(10000))
-
-st.write(result)
-    data = pd.read_csv('data_science_job.csv')
+        result = chardet.detect(rawdata.read(10000))
+    
+    # Read CSV file with the detected encoding
+    data = pd.read_csv('data_science_job.csv', encoding=result['encoding'])
     
     data['Salary'] = data['Salary'].str.extract('(\d+)', expand=False)
 
@@ -30,6 +28,7 @@ st.write(result)
     data['Salary'] = data['Salary'].astype(float) * 1000
     data['Experience level'] = data['Experience level'].apply(map_experience)
     return data
+
 
 def map_experience(experience_level):
     if experience_level == 'Entry-level':
