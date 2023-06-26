@@ -102,8 +102,7 @@ def filter_jobs(data):
 # Match Credentials Page
 def match_credentials(data):
     st.title("Match your credentials here!")
-    # Your code for matching credentials page
-   
+
     with st.form(key='match_form'):
         degree_input = st.text_input('Enter your degree')
         cert_input = st.text_input('Enter your skills')
@@ -136,6 +135,7 @@ def match_credentials(data):
         # Display the recommended jobs
         recommended_jobs = data.iloc[indices[0]]
         st.table(recommended_jobs)
+        st.session_state.matched_jobs = recommended_jobs
 
 # General Statistics Page
 # Import necessary libraries
