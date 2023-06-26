@@ -12,15 +12,15 @@ import chardet
 
 # Load data
 @st.cache
-def load_data():
-    data = pd.read_csv('data_science_job.csv')
-    
-
 with open('data_science_job.csv', 'rb') as rawdata:
     result = chardet.detect(rawdata.read(10000))
 
 st.write(result)
 
+
+def load_data():
+    data = pd.read_csv('data_science_job.csv')
+    
     data['Salary'] = data['Salary'].str.extract('(\d+)', expand=False)
 
     # Remove rows with NaN after extraction
