@@ -12,13 +12,13 @@ import chardet
 
 # Load data
 @st.cache
-with open('data_science_job.csv', 'rb') as rawdata:
-    result = chardet.detect(rawdata.read(10000))
-
-st.write(result)
 
 
 def load_data():
+    with open('data_science_job.csv', 'rb') as rawdata:
+    result = chardet.detect(rawdata.read(10000))
+
+st.write(result)
     data = pd.read_csv('data_science_job.csv')
     
     data['Salary'] = data['Salary'].str.extract('(\d+)', expand=False)
