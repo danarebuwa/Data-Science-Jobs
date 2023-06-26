@@ -8,12 +8,19 @@ import plotly
 import plotly.express as px
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.neighbors import NearestNeighbors
-
+import chardet
 
 # Load data
 @st.cache
 def load_data():
     data = pd.read_csv('data_science_job.csv')
+    
+
+with open('data_science_job.csv', 'rb') as rawdata:
+    result = chardet.detect(rawdata.read(10000))
+
+st.write(result)
+
     data['Salary'] = data['Salary'].str.extract('(\d+)', expand=False)
 
     # Remove rows with NaN after extraction
