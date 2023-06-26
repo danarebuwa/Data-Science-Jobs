@@ -148,6 +148,8 @@ import plotly.express as px
 def stats(data):
     st.title("Get the general stats!")
 
+    if 'matched_jobs' in st.session_state:
+        data = st.session_state.matched_jobs
     # Salary expectations based on roles
     st.subheader("Salary expectations based on roles")
     roles_salary = data.groupby('Job Title')['Salary'].mean().sort_values(ascending=False)
