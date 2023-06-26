@@ -9,7 +9,7 @@ from sklearn.neighbors import NearestNeighbors
 
 
 # Load data
-@st.cache_resource
+@st.cache
 def load_data():
     data = pd.read_csv('data_science_job.csv')
     data['Salary'] = data['Salary'].str.extract('(\d+)', expand=False)
